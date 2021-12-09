@@ -4,9 +4,7 @@
   "description": "memory leak demonstration",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "inspect": "node --inspect index.js",
-    "memory-usage": "memory-usage index.js"
+    "start": "node --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +22,12 @@
   "homepage": "https://github.com/michal-bures/memory-leak-demo#readme",
   "devDependencies": {
     "memory-usage": "^1.2.1"
+  },
+  "dependencies": {
+    "chart-stream": "^1.1.1",
+    "commander": "^8.3.0",
+    "csv-write-stream": "^2.0.0",
+    "opn": "^6.0.0",
+    "pump": "^3.0.0"
   }
 }
