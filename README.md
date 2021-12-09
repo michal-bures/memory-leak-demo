@@ -1,9 +1,9 @@
 # Dealing with memory leaks in Node.js
 
+## How to use the demo app
 
-## How to use this demo
+This repository contains a simple node.js app made to demonstrate node.js memory handling and a few types of memory leaks.
 
-This repository contains a simple node.js up made to emulate (and visualise) various types of memory leaks.
 ```
 npm install
 
@@ -13,8 +13,6 @@ npm start -- -h
 npm start -- --chart --leak-objects
 //usage example: leak javascript objects and see how it affects memory metrics
 ```
-
-This will print available options for specifying what to demonstrate and what to show
 
 ## How node.js manages memory
 
@@ -94,13 +92,24 @@ Running `node --inspect` in production is... brave.
  - security implications (`node --inspect` only binds to 127.0.0.1 by default, which is a good thing, never expose 
    the inspector address publicly, use ssh tunnel [remote-debugging](remote-debugging))
 
-TODO dumping to file in production?
+The [heapdump](npm-heap-dump) npm package allows you to export the snapshots on demand. 
+Better than running `node --inspect` but still has significant performance cost!
 
+Demo:
+```
+npm start -- --leak-classes --allocate-classes --heap-dump
+// snapshot is generated every 5 seconds you can find the dumps in the ./dumps folder and load them in dev tools
+
+kill -USR2 <pid>
+// you can also trigger snapshot generation to the current directory explicitly by sending a signal to the process
+```
 
 ### References
 
 * [guide to using chrome dev tools for debugging memory leaks](dev-tools-memory-guide)
+* [memoryUsage method docs in node.js](https://nodejs.org/api/process.html#processmemoryusage)
 
 [dev-tools-memory-guide]: https://developer.chrome.com/docs/devtools/memory-problems/
 [npm-memory-usage]:https://www.npmjs.com/package/memory-usage
+[npm-heap-dump]:https://www.npmjs.com/package/heapdump
 [remote-debugging]:https://nodejs.org/en/docs/guides/debugging-getting-started/#enabling-remote-debugging-scenarios
