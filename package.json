@@ -1,0 +1,28 @@
+{
+  "name": "memory-leak-demo",
+  "version": "1.0.0",
+  "description": "memory leak demonstration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "inspect": "node --inspect index.js",
+    "memory-usage": "memory-usage index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michal-bures/memory-leak-demo.git"
+  },
+  "keywords": [
+    "memory",
+    "leaks"
+  ],
+  "author": "embaircz@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michal-bures/memory-leak-demo/issues"
+  },
+  "homepage": "https://github.com/michal-bures/memory-leak-demo#readme",
+  "devDependencies": {
+    "memory-usage": "^1.2.1"
+  }
+}
