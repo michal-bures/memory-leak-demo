@@ -1,4 +1,4 @@
-const {runMemoryChart} = require("./src/memory-chart");
+const {runMemoryChart} = require("./memory-chart");
 const heapdump = require('heapdump');
 
 // command line arguments parsing and handling

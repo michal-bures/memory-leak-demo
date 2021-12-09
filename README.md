@@ -7,10 +7,10 @@ This repository contains a simple node.js app made to demonstrate node.js memory
 ```
 npm install
 
-npm start -- -h 
+./demo -h 
 //view available options
 
-npm start -- --chart --leak-objects
+./demo --chart --leak-objects
 //usage example: leak javascript objects and see how it affects memory metrics
 ```
 
@@ -32,11 +32,15 @@ What are the main roots?
 In practical terms, beware of:
  * global variables
  * setTimeout, setInterval
- * third pay libraries (make sure you use their API correctly) 
+ * third party libraries (make sure you use their API correctly) 
 
 ## Monitoring and debugging tools
 
 ### 1. built in `process.memoryUsage()`
+Basic demo:
+```
+./demo --log --leak-objects
+```
 
 * `rss` = Resident Set Size = all memory consumed by node (including the heap and also any native objects), this should match what you see in your OS process monitor
 * `heapTotal` = how much heap space is currently allocated for javascript objects
@@ -50,14 +54,14 @@ You can use the [memory-usage](npm-memory-usage) npm package to chart that in a 
 
 Demos:
 ```
-npm start -- --log --chart --leak-objects
+./demo --log --chart --leak-objects
 // see how the memoryUsage() output in console
 // observe difference between rss, heapUsed and heapTotal
 
-npm start -- --chart --leak-buffers
+./demo --chart --leak-buffers
 // observe how buffers live outside of heap
 
-npm start -- --chart --allocate-locals
+./demo --chart --allocate-classes
 // observe garbage collection happening
 ```
 
@@ -68,7 +72,7 @@ A pretty powerful debugger is build into chromium-based browsers (Chrome, Edge).
 
 Demo: 
 ```
-npm start -- --leak-classes --allocate-classes
+./demo --leak-classes --allocate-classes
 // this wil keep spawning temporary instances of LocalClass and leak instances of LeakyClass
 ```
 
@@ -97,7 +101,7 @@ Better than running `node --inspect` but still has significant performance cost!
 
 Demo:
 ```
-npm start -- --leak-classes --allocate-classes --heap-dump
+./demo --leak-classes --allocate-classes --heap-dump
 // snapshot is generated every 5 seconds you can find the dumps in the ./dumps folder and load them in dev tools
 
 kill -USR2 <pid>
